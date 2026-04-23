@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Mastermind — Super Skill מאימפרוב</title>
+  <meta name="description" content="סקיל שהופך כוונה גולמית לפרומפט מובנה ברמה מקצועית. 20+ פריימוורקים. חלק מספריית Super Skills של טירונות סוכנים." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #7c3aed;
+      --purple-light: #a78bfa;
+      --purple-deep: #5b21b6;
+      --gold: #FFD55A;
+      --gold-dim: rgba(255,213,90,0.15);
+      --gold-glow: rgba(255,213,90,0.35);
+      --bg: #08071a;
+      --surface: #110f26;
+      --surface2: #1a1740;
+      --border: rgba(124,58,237,0.18);
+      --border-gold: rgba(255,213,90,0.2);
+      --text: #e8edf8;
+      --muted: #8b8da8;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Heebo', Arial, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(124,58,237,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,58,237,0.03) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -18%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 750px;
+      height: 550px;
+      background: radial-gradient(ellipse, rgba(124,58,237,0.2) 0%, rgba(255,213,90,0.04) 50%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.2rem;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .logo {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 20px rgba(124,58,237,0.5));
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.3);
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.75rem;
+      color: var(--purple-light);
+      letter-spacing: 0.03em;
+      font-weight: 500;
+    }
+    .badge span { font-size: 0.9rem; }
+
+    .title {
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff 20%, var(--purple-light) 60%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 480px;
+    }
+
+    /* ── Super Skills Banner ── */
+    .super-skills-banner {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(124,58,237,0.12) 0%, rgba(255,213,90,0.08) 100%);
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 1.4rem 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .super-skills-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255,213,90,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .banner-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 8px rgba(255,213,90,0.4));
+    }
+
+    .banner-content {
+      flex: 1;
+    }
+
+    .banner-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.02em;
+    }
+
+    .banner-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .banner-text a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255,213,90,0.3);
+      transition: border-color 0.2s;
+    }
+    .banner-text a:hover {
+      border-color: var(--gold);
+    }
+
+    /* ── Card ── */
+    .card {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .card-intro {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .card-intro strong {
+      color: var(--purple-light);
+      font-weight: 600;
+    }
+
+    /* ── Steps ── */
+    .section-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.4rem;
+      padding: 1.3rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .step:last-child { border-bottom: none; }
+    .step.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .step, .feature { opacity: 1; transform: none; transition: none; }
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: rgba(124,58,237,0.3);
+      line-height: 1;
+      min-width: 2rem;
+      text-align: center;
+      padding-top: 0.15rem;
+    }
+
+    .step-text {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: #c8c5e0;
+    }
+
+    .step-text code {
+      background: rgba(124,58,237,0.18);
+      border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 5px;
+      padding: 0.1rem 0.4rem;
+      font-family: monospace;
+      font-size: 0.88rem;
+      color: var(--purple-light);
+      direction: ltr;
+      unicode-bidi: isolate;
+    }
+
+    /* ── Features ── */
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.1rem 1.3rem;
+      background: var(--surface2);
+      border: 1px solid rgba(124,58,237,0.1);
+      border-radius: 14px;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .feature.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .feature-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      line-height: 1;
+      padding-top: 0.1rem;
+    }
+
+    .feature-body {
+      flex: 1;
+    }
+
+    .feature-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .feature-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 -2rem;
+    }
+
+    /* ── Notes ── */
+    .notes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .note {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .note-dot {
+      color: var(--purple-light);
+      margin-top: 0.1rem;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Download button ── */
+    .download-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      max-width: 420px;
+      padding: 1.1rem 2rem;
+      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-deep) 100%);
+      color: #fff;
+      font-family: 'Heebo', Arial, sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 30px rgba(124,58,237,0.45), 0 1px 0 rgba(255,255,255,0.1) inset;
+      transition: transform 0.15s, box-shadow 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-download::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 40px rgba(124,58,237,0.55), 0 1px 0 rgba(255,255,255,0.1) inset;
+    }
+
+    .btn-download:active { transform: translateY(0); }
+
+    .btn-icon { font-size: 1.3rem; }
+
+    .download-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── CTA Block ── */
+    .cta-block {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(255,213,90,0.06) 0%, rgba(124,58,237,0.08) 100%);
+      border: 1px solid var(--border-gold);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-block::before {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 250px;
+      background: radial-gradient(ellipse, rgba(255,213,90,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .cta-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+      max-width: 440px;
+    }
+
+    .cta-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 460px;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 1rem 2.2rem;
+      background: linear-gradient(135deg, #e6b800 0%, #cc9a00 100%);
+      color: #1a1200;
+      font-family: 'Heebo', Arial, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 25px rgba(255,213,90,0.35), 0 1px 0 rgba(255,255,255,0.15) inset;
+      transition: transform 0.15s, box-shadow 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%);
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 35px rgba(255,213,90,0.5), 0 1px 0 rgba(255,255,255,0.15) inset;
+    }
+    .btn-cta:active { transform: translateY(0); }
+
+    .cta-wa-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .cta-small {
+      font-size: 0.78rem;
+      color: var(--muted);
+      opacity: 0.7;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      opacity: 0.6;
+    }
+
+    @media (max-width: 480px) {
+      .page { padding: 2rem 1rem 3rem; gap: 1.8rem; }
+      .card { padding: 1.5rem; }
+      .cta-block { padding: 1.5rem; }
+      .super-skills-banner { padding: 1.2rem; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <img class="logo" src="logo-white.png" alt="Aimprove" />
+    <div class="badge"><span>🧠</span> Super Skill</div>
+    <h1 class="title">Prompt Mastermind</h1>
+    <p class="subtitle">הסקיל שכותב פרומפטים ברמה שאתם לא הייתם מגיעים אליה לבד</p>
+  </div>
+
+  <!-- Super Skills Banner -->
+  <div class="super-skills-banner">
+    <div class="banner-icon">⚡</div>
+    <div class="banner-content">
+      <div class="banner-title">חלק מספריית Super Skills של טירונות סוכנים</div>
+      <div class="banner-text">הספרייה הזו שמורה לחברי <a href="https://wa.me/972515079762?text=%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%D7%9C%D7%AA%D7%95%D7%9B%D7%A0%D7%99%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%A0%D7%98%D7%99%D7%9D">טירונות סוכנים</a> — התוכנית לבנות כל דבר שתדמיינו</div>
+    </div>
+  </div>
+
+  <!-- Main Card -->
+  <div class="card">
+
+    <p class="card-intro">
+      <strong>מה זה:</strong> סקיל ל-Claude שהופך כוונה גולמית לפרומפט מובנה ברמה מקצועית. לא עוזר לכם לנסח — <strong>כותב</strong> את הפרומפט בשבילכם, ברמה גבוהה ממה שהייתם מגיעים אליה לבד. בוחר אוטומטית את הפריימוורק הנכון מתוך 20+ פריימוורקים מוכחים מחקרית.
+    </p>
+
+    <div>
+      <p class="section-label">איך משתמשים</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">נכנסים לשיחה חדשה ב-Claude ומוודאים שהסקיל פעיל</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">מתארים מה אתם רוצים — <code>תכתוב לי פרומפט ל...</code> או <code>תשפר את הפרומפט הזה</code></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">הסקיל מזהה את הכוונה, בוחר פריימוורק, ושואל 3-5 שאלות ממוקדות כדי לדייק</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">מקבלים פרומפט מוכן + הסבר "תחת מכסה המנוע" על מה נבנה ולמה 🎯</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Features -->
+    <div>
+      <p class="section-label">מה בפנים</p>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">🔬</div>
+        <div class="feature-body">
+          <div class="feature-title">20+ פריימוורקים מוכחים מחקרית</div>
+          <div class="feature-desc">CO-STAR, RISEN, ReAct, Chain of Thought, Tree of Thought, Self-Refine ועוד — הסקיל בוחר את הנכון עבורכם</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-body">
+          <div class="feature-title">7 קטגוריות כוונה</div>
+          <div class="feature-desc">יצירה, שינוי, הסקה, ביקורת, שחזור, הבהרה, וסוכנים — כל בקשה מקבלת את המסלול המדויק לה</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-body">
+          <div class="feature-title">Quality Gate אוטומטי</div>
+          <div class="feature-desc">לפני שהפרומפט מגיע אליכם, הסקיל בודק אותו מול 4 מבחנים — ספציפיות, מבחן הרצה, אי-סתירה, שלמות</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Notes -->
+    <div class="notes">
+      <div class="note"><span class="note-dot">🔹</span><span>מותאם במיוחד לבוני סוכנים — system prompts, instructions, tool descriptions, skill files</span></div>
+      <div class="note"><span class="note-dot">🔹</span><span>דיפולט בעברית. אפשר לבקש כל שפה אחרת</span></div>
+      <div class="note"><span class="note-dot">🔹</span><span>הוא ישאל שאלות — זה הפיצ׳ר המרכזי. ככה הפרומפט יוצא מדויק</span></div>
+      <div class="note"><span class="note-dot">🔹</span><span>אם הבקשה כבר ברורה ומלאה — הוא ידלג ישר לבנייה, בלי שאלות מיותרות</span></div>
+    </div>
+
+  </div>
+
+  <!-- Download -->
+  <div class="download-wrap">
+    <a class="btn-download" href="prompt-mastermind-v1.0.zip" download>
+      <span class="btn-icon">⬇</span>
+      להורדת הסקיל
+    </a>
+    <span class="download-meta">💻 מומלץ לפתוח מהמחשב</span>
+  </div>
+
+  <!-- CTA Block -->
+  <div class="cta-block">
+    <div class="cta-eyebrow">ספריית Super Skills</div>
+    <h2 class="cta-title">הסקיל הזה הוא אחד מתוך ספרייה שלמה. רוצים את כולם?</h2>
+    <p class="cta-desc">חברי טירונות סוכנים מקבלים גישה לספריית Super Skills מלאה — סקילים שנבנו מתוך עבודה אמיתית, לא טריקים מהרשת. חלק מתוכנית שלמה לבנות כל דבר שתדמיינו.</p>
+    <a class="btn-cta" href="https://wa.me/972515079762?text=%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%D7%9C%D7%AA%D7%95%D7%9B%D7%A0%D7%99%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%A0%D7%98%D7%99%D7%9D">
+      <svg class="cta-wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      לבדוק התאמה לטירונות סוכנים
+    </a>
+    <span class="cta-small">5 מפגשי בנייה · קבוצה מצומצמת · סינון כניסה</span>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">by אִימפּרוּב · שלהבת ורדי</div>
+
+</div>
+
+<script>
+  const animItems = document.querySelectorAll('.step, .feature');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const siblings = entry.target.parentElement.children;
+        const idx = [...siblings].indexOf(entry.target);
+        setTimeout(() => entry.target.classList.add('visible'), idx * 140);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  animItems.forEach(item => observer.observe(item));
+</script>
+</body>
+</html>
