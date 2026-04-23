@@ -207,11 +207,21 @@
     .promo-eyebrow svg { width: 14px; height: 14px; flex-shrink: 0; }
 
     .promo-headline {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--text);
-      line-height: 1.45;
+      line-height: 1.5;
     }
+
+    .promo-headline a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,213,90,0.3);
+      transition: border-color 0.2s;
+      cursor: pointer;
+    }
+    .promo-headline a:hover { border-color: var(--gold); }
 
     .promo-text {
       font-size: 0.9rem;
@@ -628,10 +638,7 @@
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 3L4 14h7l-2 7 9-11h-7l2-7z"/></svg>
         ספריית Super Skills · טירונות סוכנים
       </div>
-      <div class="promo-headline">הסקיל הזה חלק מספרייה שלמה שנבנית מתוך עבודה אמיתית — לא טריקים מהרשת</div>
-      <div class="promo-text">
-        חברי <a href="https://wa.me/972515079762?text=%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%D7%9C%D7%AA%D7%95%D7%9B%D7%A0%D7%99%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%A0%D7%98%D7%99%D7%9D">טירונות סוכנים</a> מקבלים גישה לספריית Super Skills המלאה — כלים שנולדו מתוך בנייה יומיומית של סוכנים ומערכות AI. התוכנית לבנות כל דבר שתדמיינו.
-      </div>
+      <div class="promo-headline">הסקיל הזה חלק מספריית Super Skills של <a href="https://wa.me/972515079762?text=%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%D7%9C%D7%AA%D7%95%D7%9B%D7%A0%D7%99%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%A0%D7%98%D7%99%D7%9D">טירונות סוכנים</a> — כלים שנבנו מעבודה אמיתית, לא טריקים מהרשת.</div>
       <div class="promo-bullets">
         <div class="promo-bullet">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
