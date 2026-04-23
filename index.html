@@ -19,6 +19,10 @@
       --gold-warm: #F5C542;
       --gold-dim: rgba(255,213,90,0.12);
       --gold-glow: rgba(255,213,90,0.3);
+      --blue: #60a5fa;
+      --blue-dim: rgba(96,165,250,0.12);
+      --green: #4ade80;
+      --green-dim: rgba(74,222,128,0.12);
       --bg: #07061a;
       --surface: #0f0d24;
       --surface2: #181540;
@@ -39,7 +43,6 @@
       overflow-x: hidden;
     }
 
-    /* ── Subtle grid background ── */
     body::before {
       content: '';
       position: fixed;
@@ -61,11 +64,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2rem;
+      gap: 1.6rem;
     }
 
     /* ══════════════════════════════════════
-       HERO / HEADER
+       HERO
        ══════════════════════════════════════ */
     .hero {
       width: 100%;
@@ -78,7 +81,6 @@
       border: 1px solid var(--border);
     }
 
-    /* Animated aurora glow */
     .hero::before {
       content: '';
       position: absolute;
@@ -126,7 +128,6 @@
       font-weight: 500;
       margin-bottom: 1.2rem;
     }
-
     .badge svg { width: 14px; height: 14px; flex-shrink: 0; }
 
     .title {
@@ -151,7 +152,7 @@
     }
 
     /* ══════════════════════════════════════
-       SUPER SKILLS PROMO — the showcase
+       PROMO BANNER — compact
        ══════════════════════════════════════ */
     .promo {
       width: 100%;
@@ -161,7 +162,6 @@
       border: 1px solid var(--border-gold);
     }
 
-    /* Animated gradient strip at top */
     .promo-strip {
       height: 3px;
       background: linear-gradient(90deg, var(--purple), var(--gold), var(--purple));
@@ -175,14 +175,13 @@
 
     .promo-body {
       display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      padding: 1.6rem 1.8rem 1.5rem;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 1.6rem;
       background: linear-gradient(160deg, rgba(124,58,237,0.08) 0%, rgba(255,213,90,0.05) 100%);
       position: relative;
     }
 
-    /* Subtle corner glow */
     .promo-body::after {
       content: '';
       position: absolute;
@@ -194,30 +193,32 @@
       pointer-events: none;
     }
 
-    .promo-eyebrow {
-      display: inline-flex;
+    .promo-icon {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      display: flex;
       align-items: center;
-      gap: 0.45rem;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-weight: 700;
-      color: var(--gold);
+      justify-content: center;
+      border-radius: 10px;
+      background: var(--gold-dim);
     }
+    .promo-icon svg { width: 18px; height: 18px; color: var(--gold-warm); }
 
-    .promo-eyebrow svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .promo-content { flex: 1; position: relative; z-index: 1; }
 
     .promo-headline {
-      font-size: 1.2rem;
+      font-size: 0.92rem;
       font-weight: 700;
       color: var(--text);
-      line-height: 1.45;
+      line-height: 1.4;
+      margin-bottom: 0.15rem;
     }
 
     .promo-text {
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     .promo-text a {
@@ -225,101 +226,94 @@
       text-decoration: none;
       font-weight: 600;
       border-bottom: 1px solid rgba(255,213,90,0.25);
-      transition: border-color 0.2s, color 0.2s;
+      transition: border-color 0.2s;
       cursor: pointer;
     }
     .promo-text a:hover { border-color: var(--gold); }
 
-    .promo-bullets {
-      display: flex;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-    }
-
-    .promo-bullet {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    .promo-bullet svg {
-      width: 14px;
-      height: 14px;
-      color: var(--gold-warm);
-      flex-shrink: 0;
-    }
-
     /* ══════════════════════════════════════
-       CARD
+       CARD — shared styles for all 3 cards
        ══════════════════════════════════════ */
     .card {
       width: 100%;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 2rem;
+      padding: 1.8rem 2rem;
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .card-intro {
-      font-size: 1.05rem;
-      line-height: 1.75;
-      color: var(--text);
-    }
-    .card-intro strong {
-      color: var(--purple-light);
-      font-weight: 600;
+      gap: 1.2rem;
     }
 
     .section-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--muted);
       font-weight: 600;
     }
 
-    /* ── Steps ── */
+    /* ── Card 1: Intro ── */
+    .intro-line {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #c5c3de;
+    }
+
+    .intro-callout {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gold-warm);
+      line-height: 1.5;
+    }
+    .intro-callout strong {
+      color: #fff;
+      font-weight: 800;
+    }
+
+    /* ── Card 2: Steps ── */
     .steps { display: flex; flex-direction: column; }
 
     .step {
       display: flex;
       align-items: flex-start;
-      gap: 1.3rem;
-      padding: 1.2rem 0;
+      gap: 1.2rem;
+      padding: 1rem 0;
       border-bottom: 1px solid var(--white-dim);
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(18px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    .step:last-child { border-bottom: none; }
+    .step:last-child { border-bottom: none; padding-bottom: 0; }
     .step.visible { opacity: 1; transform: translateY(0); }
 
     .step-num {
       flex-shrink: 0;
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      color: var(--purple-light);
-      background: rgba(124,58,237,0.12);
-      border: 1px solid rgba(124,58,237,0.2);
-      border-radius: 10px;
+      border-radius: 9px;
     }
 
+    .step-num-1 { color: var(--purple-light); background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.2); }
+    .step-num-2 { color: var(--blue); background: var(--blue-dim); border: 1px solid rgba(96,165,250,0.2); }
+    .step-num-3 { color: var(--gold-warm); background: var(--gold-dim); border: 1px solid rgba(255,213,90,0.2); }
+    .step-num-4 { color: var(--green); background: var(--green-dim); border: 1px solid rgba(74,222,128,0.2); }
+
     .step-text {
-      font-size: 0.98rem;
-      line-height: 1.65;
+      font-size: 0.95rem;
+      line-height: 1.6;
       color: #c5c3de;
-      padding-top: 0.2rem;
+      padding-top: 0.15rem;
+    }
+
+    .step-text .hl {
+      color: var(--text);
+      font-weight: 600;
     }
 
     .step-text code {
@@ -328,13 +322,13 @@
       border-radius: 5px;
       padding: 0.1rem 0.4rem;
       font-family: monospace;
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       color: var(--purple-light);
       direction: ltr;
       unicode-bidi: isolate;
     }
 
-    /* ── Features ── */
+    /* ── Card 3: Features ── */
     .features { display: flex; flex-direction: column; gap: 0.8rem; }
 
     .feature {
@@ -343,64 +337,94 @@
       gap: 1rem;
       padding: 1rem 1.2rem;
       background: var(--surface2);
-      border: 1px solid rgba(124,58,237,0.08);
       border-radius: 14px;
       opacity: 0;
-      transform: translateY(16px);
+      transform: translateY(14px);
       transition: opacity 0.45s ease, transform 0.45s ease;
       cursor: default;
     }
-    .feature:hover { border-color: rgba(124,58,237,0.2); }
     .feature.visible { opacity: 1; transform: translateY(0); }
 
     .feature-icon {
       flex-shrink: 0;
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 10px;
-      background: rgba(124,58,237,0.12);
+      border-radius: 9px;
     }
-    .feature-icon svg { width: 18px; height: 18px; color: var(--purple-light); }
+    .feature-icon svg { width: 17px; height: 17px; }
+
+    .fi-purple { background: rgba(124,58,237,0.12); }
+    .fi-purple svg { color: var(--purple-light); }
+    .fi-blue { background: var(--blue-dim); }
+    .fi-blue svg { color: var(--blue); }
+    .fi-green { background: var(--green-dim); }
+    .fi-green svg { color: var(--green); }
 
     .feature-body { flex: 1; }
 
     .feature-title {
-      font-size: 0.93rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.35rem;
     }
+
+    /* Tag chips for scannable lists */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .tag-purple { background: rgba(124,58,237,0.12); color: var(--purple-light); border: 1px solid rgba(124,58,237,0.18); }
+    .tag-blue { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(96,165,250,0.18); }
+    .tag-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(74,222,128,0.18); }
+    .tag-muted { background: var(--white-dim); color: var(--muted); border: 1px solid rgba(255,255,255,0.08); }
 
     .feature-desc {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.5;
+      margin-top: 0.3rem;
     }
 
-    /* ── Divider ── */
-    .divider { height: 1px; background: var(--border); margin: 0 -2rem; }
-
-    /* ── Notes ── */
-    .notes { display: flex; flex-direction: column; gap: 0.55rem; }
+    /* ── Notes — standalone, outside cards ── */
+    .notes {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0 0.5rem;
+    }
 
     .note {
       display: flex;
-      align-items: flex-start;
-      gap: 0.55rem;
-      font-size: 0.88rem;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
-    .note svg {
-      width: 16px;
-      height: 16px;
-      margin-top: 2px;
-      color: var(--purple-light);
+    .note-dot {
       flex-shrink: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--purple-light);
+      opacity: 0.6;
     }
 
     /* ══════════════════════════════════════
@@ -450,22 +474,13 @@
       box-shadow: 0 8px 38px rgba(124,58,237,0.5), 0 1px 0 rgba(255,255,255,0.08) inset;
     }
     .btn-download:active { transform: translateY(0); }
-
     .btn-download svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-    .download-meta {
-      font-size: 0.76rem;
-      color: var(--muted);
-    }
-    .download-meta svg {
-      width: 13px;
-      height: 13px;
-      vertical-align: -2px;
-      margin-left: 3px;
-    }
+    .download-meta { font-size: 0.76rem; color: var(--muted); }
+    .download-meta svg { width: 13px; height: 13px; vertical-align: -2px; margin-left: 3px; }
 
     /* ══════════════════════════════════════
-       CTA — TIRUT SOKHNIM
+       CTA — clean, minimal
        ══════════════════════════════════════ */
     .cta-block {
       width: 100%;
@@ -476,7 +491,6 @@
       text-align: center;
     }
 
-    /* Animated gold strip */
     .cta-strip {
       height: 3px;
       background: linear-gradient(90deg, var(--gold), #FF9F43, var(--gold));
@@ -485,12 +499,12 @@
     }
 
     .cta-inner {
-      padding: 2.2rem 2rem;
+      padding: 1.8rem 2rem;
       background: linear-gradient(170deg, rgba(255,213,90,0.06) 0%, rgba(124,58,237,0.06) 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1rem;
+      gap: 0.9rem;
       position: relative;
     }
 
@@ -508,27 +522,12 @@
 
     .cta-inner > * { position: relative; z-index: 1; }
 
-    .cta-eyebrow {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--gold);
-      font-weight: 700;
-    }
-
     .cta-title {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 700;
       color: var(--text);
       line-height: 1.4;
-      max-width: 440px;
-    }
-
-    .cta-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.6;
-      max-width: 460px;
+      max-width: 400px;
     }
 
     .btn-cta {
@@ -565,14 +564,9 @@
       box-shadow: 0 8px 34px rgba(255,213,90,0.45), 0 1px 0 rgba(255,255,255,0.12) inset;
     }
     .btn-cta:active { transform: translateY(0); }
-
     .btn-cta svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-    .cta-small {
-      font-size: 0.76rem;
-      color: var(--muted);
-      opacity: 0.75;
-    }
+    .cta-small { font-size: 0.74rem; color: var(--muted); opacity: 0.7; }
 
     /* ══════════════════════════════════════
        FOOTER
@@ -595,13 +589,12 @@
     }
 
     @media (max-width: 520px) {
-      .page { padding: 1.5rem 1rem 3rem; gap: 1.5rem; }
+      .page { padding: 1.5rem 1rem 3rem; gap: 1.3rem; }
       .hero { padding: 2.2rem 1.3rem 2rem; }
       .card { padding: 1.4rem; }
-      .cta-inner { padding: 1.5rem 1.2rem; }
-      .promo-body { padding: 1.2rem; }
-      .promo-bullets { gap: 0.8rem; }
-      .divider { margin: 0 -1.4rem; }
+      .cta-inner { padding: 1.4rem 1.2rem; }
+      .promo-body { padding: 1rem; flex-direction: column; }
+      .tags { gap: 0.3rem; }
     }
   </style>
 </head>
@@ -611,135 +604,119 @@
   <!-- ════════ HERO ════════ -->
   <div class="hero">
     <img class="logo" src="logo-white.png" alt="Aimprove" />
-
     <div class="badge">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4z"/><circle cx="12" cy="15" r="2"/></svg>
       Super Skill
     </div>
-
     <h1 class="title">Prompt Mastermind</h1>
     <p class="subtitle">הסקיל שכותב פרומפטים ברמה שאתם לא הייתם מגיעים אליה לבד</p>
   </div>
 
-  <!-- ════════ SUPER SKILLS PROMO ════════ -->
+  <!-- ════════ PROMO — compact single row ════════ -->
   <div class="promo">
     <div class="promo-strip"></div>
     <div class="promo-body">
-      <div class="promo-eyebrow">
+      <div class="promo-icon">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 3L4 14h7l-2 7 9-11h-7l2-7z"/></svg>
-        ספריית Super Skills · טירונות סוכנים
       </div>
-      <div class="promo-headline">הסקיל הזה חלק מספרייה שלמה שנבנית מתוך עבודה אמיתית — לא טריקים מהרשת</div>
-      <div class="promo-text">
-        חברי <a href="https://wa.me/972515079762?text=%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%D7%9C%D7%AA%D7%95%D7%9B%D7%A0%D7%99%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%A0%D7%98%D7%99%D7%9D">טירונות סוכנים</a> מקבלים גישה לספריית Super Skills המלאה — כלים שנולדו מתוך בנייה יומיומית של סוכנים ומערכות AI. התוכנית לבנות כל דבר שתדמיינו.
+      <div class="promo-content">
+        <div class="promo-headline">חלק מספריית Super Skills של <a href="https://wa.me/972515079762?text=%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%D7%9C%D7%AA%D7%95%D7%9B%D7%A0%D7%99%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%A0%D7%98%D7%99%D7%9D">טירונות סוכנים</a></div>
+        <div class="promo-text">סקילים שנבנו מתוך עבודה אמיתית, לא טריקים מהרשת</div>
       </div>
-      <div class="promo-bullets">
-        <div class="promo-bullet">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          5 מפגשי בנייה
+    </div>
+  </div>
+
+  <!-- ════════ CARD 1: What is it ════════ -->
+  <div class="card">
+    <p class="section-label">מה זה</p>
+    <p class="intro-line">סקיל ל-Claude שהופך כוונה גולמית לפרומפט מובנה ברמה מקצועית.</p>
+    <p class="intro-callout">לא עוזר לנסח — <strong>כותב</strong> בשבילכם.</p>
+  </div>
+
+  <!-- ════════ CARD 2: How to use ════════ -->
+  <div class="card">
+    <p class="section-label">איך משתמשים</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num step-num-1">1</div>
+        <div class="step-text">נכנסים ל-<span class="hl">שיחה חדשה ב-Claude</span> ומוודאים שהסקיל פעיל</div>
+      </div>
+      <div class="step">
+        <div class="step-num step-num-2">2</div>
+        <div class="step-text">מתארים מה אתם רוצים — <code>תכתוב לי פרומפט ל...</code> או <code>תשפר את הפרומפט הזה</code></div>
+      </div>
+      <div class="step">
+        <div class="step-num step-num-3">3</div>
+        <div class="step-text">הסקיל <span class="hl">מזהה כוונה</span>, בוחר פריימוורק, ושואל <span class="hl">3-5 שאלות ממוקדות</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num step-num-4">4</div>
+        <div class="step-text">מקבלים <span class="hl">פרומפט מוכן</span> + הסבר "תחת מכסה המנוע"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ CARD 3: What's inside ════════ -->
+  <div class="card">
+    <p class="section-label">מה בפנים</p>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon fi-purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2z"/></svg>
         </div>
-        <div class="promo-bullet">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          קבוצה מצומצמת
+        <div class="feature-body">
+          <div class="feature-title">20+ פריימוורקים מוכחים מחקרית</div>
+          <div class="tags">
+            <span class="tag tag-purple">CO-STAR</span>
+            <span class="tag tag-purple">RISEN</span>
+            <span class="tag tag-purple">ReAct</span>
+            <span class="tag tag-purple">CoT</span>
+            <span class="tag tag-purple">ToT</span>
+            <span class="tag tag-purple">Self-Refine</span>
+            <span class="tag tag-muted">+15</span>
+          </div>
         </div>
-        <div class="promo-bullet">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          סינון כניסה
+      </div>
+      <div class="feature">
+        <div class="feature-icon fi-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
         </div>
-        <div class="promo-bullet">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          ספריית סקילים מלאה
+        <div class="feature-body">
+          <div class="feature-title">7 קטגוריות כוונה</div>
+          <div class="tags">
+            <span class="tag tag-blue">יצירה</span>
+            <span class="tag tag-blue">שינוי</span>
+            <span class="tag tag-blue">הסקה</span>
+            <span class="tag tag-blue">ביקורת</span>
+            <span class="tag tag-blue">שחזור</span>
+            <span class="tag tag-blue">הבהרה</span>
+            <span class="tag tag-blue">סוכנים</span>
+          </div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon fi-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div class="feature-body">
+          <div class="feature-title">Quality Gate אוטומטי</div>
+          <div class="tags">
+            <span class="tag tag-green">ספציפיות</span>
+            <span class="tag tag-green">מבחן הרצה</span>
+            <span class="tag tag-green">אי-סתירה</span>
+            <span class="tag tag-green">שלמות</span>
+          </div>
+          <div class="feature-desc">4 מבחנים לפני שהפרומפט מגיע אליכם</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ════════ MAIN CARD ════════ -->
-  <div class="card">
-
-    <p class="card-intro">
-      <strong>מה זה:</strong> סקיל ל-Claude שהופך כוונה גולמית לפרומפט מובנה ברמה מקצועית. לא עוזר לכם לנסח — <strong>כותב</strong> את הפרומפט בשבילכם. בוחר אוטומטית את הפריימוורק הנכון מתוך 20+ פריימוורקים מוכחים מחקרית, שואל שאלות ממוקדות, ומחזיר פרומפט מוכן לשימוש.
-    </p>
-
-    <!-- Steps -->
-    <div><p class="section-label">איך משתמשים</p></div>
-
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">נכנסים לשיחה חדשה ב-Claude ומוודאים שהסקיל פעיל</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text">מתארים מה אתם רוצים — <code>תכתוב לי פרומפט ל...</code> או <code>תשפר את הפרומפט הזה</code></div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">הסקיל מזהה את הכוונה, בוחר פריימוורק, ושואל 3-5 שאלות ממוקדות כדי לדייק</div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-text">מקבלים פרומפט מוכן + הסבר "תחת מכסה המנוע" על מה נבנה ולמה</div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- Features -->
-    <div><p class="section-label">מה בפנים</p></div>
-
-    <div class="features">
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2z"/></svg>
-        </div>
-        <div class="feature-body">
-          <div class="feature-title">20+ פריימוורקים מוכחים מחקרית</div>
-          <div class="feature-desc">CO-STAR, RISEN, ReAct, Chain of Thought, Tree of Thought, Self-Refine ועוד — הסקיל בוחר את הנכון עבורכם</div>
-        </div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-        </div>
-        <div class="feature-body">
-          <div class="feature-title">7 קטגוריות כוונה</div>
-          <div class="feature-desc">יצירה, שינוי, הסקה, ביקורת, שחזור, הבהרה, וסוכנים — כל בקשה מקבלת את המסלול המדויק לה</div>
-        </div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-        </div>
-        <div class="feature-body">
-          <div class="feature-title">Quality Gate אוטומטי</div>
-          <div class="feature-desc">לפני שהפרומפט מגיע אליכם, הסקיל בודק אותו מול 4 מבחנים — ספציפיות, מבחן הרצה, אי-סתירה, שלמות</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- Notes -->
-    <div class="notes">
-      <div class="note">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-        <span>מותאם במיוחד לבוני סוכנים — system prompts, instructions, tool descriptions, skill files</span>
-      </div>
-      <div class="note">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-        <span>דיפולט בעברית. אפשר לבקש כל שפה אחרת</span>
-      </div>
-      <div class="note">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-        <span>הוא ישאל שאלות — זה הפיצ׳ר המרכזי. ככה הפרומפט יוצא מדויק</span>
-      </div>
-      <div class="note">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-        <span>אם הבקשה כבר ברורה ומלאה — ידלג ישר לבנייה, בלי שאלות מיותרות</span>
-      </div>
-    </div>
-
+  <!-- ════════ NOTES — standalone, light ════════ -->
+  <div class="notes">
+    <div class="note"><div class="note-dot"></div><span>מותאם לבוני סוכנים — system prompts, instructions, skill files</span></div>
+    <div class="note"><div class="note-dot"></div><span>דיפולט בעברית, אפשר לבקש כל שפה</span></div>
+    <div class="note"><div class="note-dot"></div><span>ישאל שאלות כדי לדייק — אם הבקשה ברורה, ידלג ישר לבנייה</span></div>
   </div>
 
   <!-- ════════ DOWNLOAD ════════ -->
@@ -754,13 +731,11 @@
     </span>
   </div>
 
-  <!-- ════════ CTA ════════ -->
+  <!-- ════════ CTA — clean, no paragraph ════════ -->
   <div class="cta-block">
     <div class="cta-strip"></div>
     <div class="cta-inner">
-      <div class="cta-eyebrow">ספריית Super Skills</div>
-      <h2 class="cta-title">הסקיל הזה הוא אחד מתוך ספרייה שלמה.<br/>רוצים את כולם?</h2>
-      <p class="cta-desc">חברי טירונות סוכנים מקבלים גישה מלאה — סקילים שנבנו מתוך עבודה אמיתית, לא טריקים מהרשת. חלק מתוכנית שלמה לבנות כל דבר שתדמיינו.</p>
+      <h2 class="cta-title">הסקיל הזה אחד מתוך ספרייה שלמה.<br/>רוצים את כולם?</h2>
       <a class="btn-cta" href="https://wa.me/972515079762?text=%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%D7%9C%D7%AA%D7%95%D7%9B%D7%A0%D7%99%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%A0%D7%98%D7%99%D7%9D">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         לבדוק התאמה לטירונות סוכנים
@@ -769,7 +744,6 @@
     </div>
   </div>
 
-  <!-- ════════ FOOTER ════════ -->
   <div class="footer">by אִימפּרוּב · שלהבת ורדי</div>
 
 </div>
