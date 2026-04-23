@@ -107,11 +107,12 @@
     .hero > * { position: relative; z-index: 1; }
 
     .logo {
+      display: block;
       width: 64px;
       height: 64px;
       object-fit: contain;
       filter: drop-shadow(0 0 22px var(--purple-glow));
-      margin-bottom: 1rem;
+      margin: 0 auto 1rem;
     }
 
     .badge {
@@ -175,9 +176,9 @@
 
     .promo-body {
       display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.2rem 1.6rem;
+      flex-direction: column;
+      gap: 1.1rem;
+      padding: 1.5rem 1.8rem 1.4rem;
       background: linear-gradient(160deg, rgba(124,58,237,0.08) 0%, rgba(255,213,90,0.05) 100%);
       position: relative;
     }
@@ -193,32 +194,29 @@
       pointer-events: none;
     }
 
-    .promo-icon {
-      flex-shrink: 0;
-      width: 38px;
-      height: 38px;
-      display: flex;
+    .promo-eyebrow {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      background: var(--gold-dim);
+      gap: 0.45rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: var(--gold);
     }
-    .promo-icon svg { width: 18px; height: 18px; color: var(--gold-warm); }
-
-    .promo-content { flex: 1; position: relative; z-index: 1; }
+    .promo-eyebrow svg { width: 14px; height: 14px; flex-shrink: 0; }
 
     .promo-headline {
-      font-size: 0.92rem;
+      font-size: 1.15rem;
       font-weight: 700;
       color: var(--text);
-      line-height: 1.4;
-      margin-bottom: 0.15rem;
+      line-height: 1.45;
     }
 
     .promo-text {
-      font-size: 0.82rem;
+      font-size: 0.9rem;
       color: var(--muted);
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     .promo-text a {
@@ -230,6 +228,28 @@
       cursor: pointer;
     }
     .promo-text a:hover { border-color: var(--gold); }
+
+    .promo-bullets {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .promo-bullet {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .promo-bullet svg {
+      width: 14px;
+      height: 14px;
+      color: var(--gold-warm);
+      flex-shrink: 0;
+    }
 
     /* ══════════════════════════════════════
        CARD — shared styles for all 3 cards
@@ -580,7 +600,8 @@
       .hero { padding: 2.2rem 1.3rem 2rem; }
       .card { padding: 1.4rem; }
       .cta-inner { padding: 1.4rem 1.2rem; }
-      .promo-body { padding: 1rem; flex-direction: column; }
+      .promo-body { padding: 1.2rem; }
+      .promo-bullets { gap: 0.8rem; }
       .tags { gap: 0.3rem; }
     }
   </style>
@@ -599,16 +620,35 @@
     <p class="subtitle">הסקיל שכותב פרומפטים ברמה שאתם לא הייתם מגיעים אליה לבד</p>
   </div>
 
-  <!-- ════════ PROMO — compact single row ════════ -->
+  <!-- ════════ SUPER SKILLS PROMO ════════ -->
   <div class="promo">
     <div class="promo-strip"></div>
     <div class="promo-body">
-      <div class="promo-icon">
+      <div class="promo-eyebrow">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 3L4 14h7l-2 7 9-11h-7l2-7z"/></svg>
+        ספריית Super Skills · טירונות סוכנים
       </div>
-      <div class="promo-content">
-        <div class="promo-headline">חלק מספריית Super Skills של <a href="https://wa.me/972515079762?text=%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%D7%9C%D7%AA%D7%95%D7%9B%D7%A0%D7%99%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%A0%D7%98%D7%99%D7%9D">טירונות סוכנים</a></div>
-        <div class="promo-text">סקילים שנבנו מתוך עבודה אמיתית, לא טריקים מהרשת</div>
+      <div class="promo-headline">הסקיל הזה חלק מספרייה שלמה שנבנית מתוך עבודה אמיתית — לא טריקים מהרשת</div>
+      <div class="promo-text">
+        חברי <a href="https://wa.me/972515079762?text=%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%D7%9C%D7%AA%D7%95%D7%9B%D7%A0%D7%99%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%A0%D7%98%D7%99%D7%9D">טירונות סוכנים</a> מקבלים גישה לספריית Super Skills המלאה — כלים שנולדו מתוך בנייה יומיומית של סוכנים ומערכות AI. התוכנית לבנות כל דבר שתדמיינו.
+      </div>
+      <div class="promo-bullets">
+        <div class="promo-bullet">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          בנייה אמיתית, לא תיאוריה
+        </div>
+        <div class="promo-bullet">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          שיטה, לא כלי
+        </div>
+        <div class="promo-bullet">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          קבוצה מצומצמת עם סינון
+        </div>
+        <div class="promo-bullet">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          ספריית סקילים מלאה
+        </div>
       </div>
     </div>
   </div>
