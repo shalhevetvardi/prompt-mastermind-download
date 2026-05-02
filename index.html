@@ -483,6 +483,119 @@
     .download-meta svg { width: 13px; height: 13px; vertical-align: -2px; margin-left: 3px; }
 
     /* ══════════════════════════════════════
+       INSTALL ACCORDION
+       ══════════════════════════════════════ */
+    .install-toggle {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .install-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.65rem 1.2rem;
+      background: transparent;
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 10px;
+      color: var(--muted);
+      font-family: 'Heebo', Arial, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .install-trigger:hover {
+      color: var(--text);
+      border-color: rgba(124,58,237,0.35);
+      background: rgba(124,58,237,0.06);
+    }
+
+    .install-trigger svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .install-toggle.open .install-trigger svg {
+      transform: rotate(180deg);
+    }
+
+    .install-panel {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+      margin-top: 0;
+    }
+
+    .install-toggle.open .install-panel {
+      max-height: 600px;
+      opacity: 1;
+      margin-top: 0.8rem;
+    }
+
+    .install-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .install-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      font-size: 0.88rem;
+      color: #dbd9ed;
+      line-height: 1.6;
+    }
+
+    .install-step-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      border-radius: 6px;
+      color: #e8e0ff;
+      background: rgba(124,58,237,0.25);
+      border: 1px solid rgba(124,58,237,0.35);
+      margin-top: 0.1rem;
+    }
+
+    .install-step .hl { color: #fff; font-weight: 600; }
+
+    .install-prereq {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.55;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--white-dim);
+    }
+
+    .install-prereq svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      color: var(--gold-warm);
+      margin-top: 0.1rem;
+    }
+
+    /* ══════════════════════════════════════
        CTA — clean, minimal
        ══════════════════════════════════════ */
     .cta-block {
@@ -756,6 +869,41 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
       מומלץ לפתוח מהמחשב
     </span>
+
+    <div class="install-toggle" id="installToggle">
+      <button class="install-trigger" onclick="document.getElementById('installToggle').classList.toggle('open')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        איך מעלים את הסקיל לקלוד?
+      </button>
+      <div class="install-panel">
+        <div class="install-card">
+          <div class="install-step">
+            <div class="install-step-num">1</div>
+            <span>נכנסים ל-<span class="hl">claude.ai</span> ומוודאים שאתם מחוברים</span>
+          </div>
+          <div class="install-step">
+            <div class="install-step-num">2</div>
+            <span>הולכים ל-<span class="hl">Customize</span> בתפריט הצד ← לוחצים על <span class="hl">Skills</span></span>
+          </div>
+          <div class="install-step">
+            <div class="install-step-num">3</div>
+            <span>לוחצים על כפתור ה-<span class="hl">+</span> ← בוחרים <span class="hl">+ Create skill</span></span>
+          </div>
+          <div class="install-step">
+            <div class="install-step-num">4</div>
+            <span>בוחרים <span class="hl">Upload a skill</span> ← בוחרים את קובץ ה-ZIP שהורדתם</span>
+          </div>
+          <div class="install-step">
+            <div class="install-step-num">5</div>
+            <span>הסקיל יופיע ברשימה — מוודאים שהמתג שלו <span class="hl">דלוק</span> ✓</span>
+          </div>
+          <div class="install-prereq">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>דרישה: צריך שתהיה מופעלת האפשרות <strong style="color:#e8e0ff">Code execution</strong> ב-Settings&nbsp;›&nbsp;Capabilities. בלי זה Skills לא יעבדו.</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ════════ CTA ════════ -->
