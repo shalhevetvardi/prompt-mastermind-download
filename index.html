@@ -798,25 +798,29 @@
     <p class="intro-callout">לא עוזר לנסח — <strong>כותב</strong> בשבילכם.</p>
   </div>
 
-  <!-- ════════ CARD 2: How to use ════════ -->
-  <div class="card">
-    <p class="section-label">איך משתמשים</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num step-num-1">1</div>
-        <div class="step-text">נכנסים ל-<span class="hl">שיחה חדשה ב-Claude</span> ומוודאים שהסקיל פעיל</div>
-      </div>
-      <div class="step">
-        <div class="step-num step-num-2">2</div>
-        <div class="step-text">מתארים מה אתם רוצים — <code>תכתוב לי פרומפט ל...</code> או <code>תשפר את הפרומפט הזה</code></div>
-      </div>
-      <div class="step">
-        <div class="step-num step-num-3">3</div>
-        <div class="step-text">הסקיל <span class="hl">מזהה כוונה</span>, בוחר פריימוורק, ושואל <span class="hl">3-5 שאלות ממוקדות</span></div>
-      </div>
-      <div class="step">
-        <div class="step-num step-num-4">4</div>
-        <div class="step-text">מקבלים <span class="hl">פרומפט מוכן</span> + הסבר "תחת מכסה המנוע"</div>
+  <!-- ════════ HOW TO USE (toggle) ════════ -->
+  <div class="install-toggle" id="usageToggle">
+    <button class="install-trigger" onclick="document.getElementById('usageToggle').classList.toggle('open')">
+      לחצו כאן לגלות איך משתמשים בסקיל
+    </button>
+    <div class="install-panel">
+      <div class="install-card">
+        <div class="install-step">
+          <div class="install-step-num">1</div>
+          <span>נכנסים ל-<span class="hl">שיחה חדשה ב-Claude</span> ומוודאים שהסקיל פעיל</span>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">2</div>
+          <span>מתארים מה אתם רוצים — <code>תכתוב לי פרומפט ל...</code> או <code>תשפר את הפרומפט הזה</code></span>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">3</div>
+          <span>הסקיל <span class="hl">מזהה כוונה</span>, בוחר פריימוורק, ושואל <span class="hl">3-5 שאלות ממוקדות</span></span>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">4</div>
+          <span>מקבלים <span class="hl">פרומפט מוכן</span> + הסבר "תחת מכסה המנוע"</span>
+        </div>
       </div>
     </div>
   </div>
